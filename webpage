@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>{{ title }}</title>
+         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=medium-dpi" />
+         {% include 'header.html' %}    
+    </head>
+
+<body>
+	<div class="container text-center">
+    
+        <div id="carousel-id" class="carousel slide"  data-interval="{{slidertimer}}000" data-ride="carousel">           
+            <div class="carousel-inner" role="listbox">
+            {% for d in banner if d.banner %}
+                  <div class="carousel-item {% if loop.first %} active {% endif %}">
+                    <img src="/assets/images/{{ d.banner }}" class="img-fluid">
+                  </div>
+            {% endfor %}
+            </div>
+            
+          </div>
+  
+		<div style="margin:10px"></div>
+		<!--<div class="animate-area">
+            <img class="img-fluid temp-hidden" src="images/logo-small.png" />
+            </div>-->
+
+
+	    <div class="d-flex justify-content-center">
+                <div class="alert alert-success">{{ portalannouncement }} </div>
+            </div> 
+
+		<div class="row">
+			<div class="col-md-12 h2">
+				<div id="status">{{getstatus| raw}}</div>
+			</div>
+		</div>
+		<div id="default_container">
+			<div class="row" style="margin-bottom:10px;">
+				<div class="col-md-12"> <small style="color:#007bff;text-transform: uppercase;">IP: {{ ip }} | Mac: {{ mac }} </small>
+				</div>
+				<div class="col-md-12"> <small style="color:#007bff;text-transform: uppercase;">Account Credits: ₱{{ remainingcredit }} </small>
+				</div>
+				<div class="col-md-12"> <small style="color:#007bff;text-transform: uppercase;">{{ expiretime }}</small>
+				</div>
+				<div class="col-md-12"> <small style="color:#007bff;text-transform: uppercase;"><div id="remaindata"> </div> </small>
+				</div>
+				<div class="col-md-12"> <small style="color:#748c8a;text-transform: uppercase;"> <div id="timesign"> {{TimeSign | raw}} </div></small>
+				</div>
+				<div class="col-md-12">
+					<div id="rtime"> {{getUserremainingTime | raw}}</div>
+				</div>
+			</div>
+			<div class="temp-hidden">
+            
+            
+               {% if freehour == 1 %}
+				<div class="row" style="margin-bottom:10px;">
+					<div class="col-md-12">
+						<button type="button" id="0" class="btn btn-danger button-rnd ">Get Free Time</button>
+					</div>
+				</div>    
+                {% endif %}
+                
+				{% if insertcoin == 1 %}
+				<div class="row" style="margin-bottom:10px;">
+					<div class="col-md-12">
+                    {% if checkavailableonline < 1 %}
+						<button type="button" id="insert_coin_button" value="zxcv" class="insert_coin_button btn btn-success button-rnd">Insert Money</button>
+						{% else %}
+						<button type="button" data-toggle="modal" data-target="#multicoinslot" class="btn btn-success button-rnd">Insert Money</button>
+                        {% endif %}
+                        </div>
+				</div>
+				{% endif %}
+				
+				{% if pausetime == 1 %}
+				{% if userpausetime == 1 %}
+				<div class="row" id="pcheck" style="margin-bottom:10px;">
+					<div class="col-md-12">
+						<button type="button" id="pfunc" class="btn btn-danger button-rnd btn-spinner">Pause Time</button>
+					</div>
+				</div>
+				{% endif %}
+				{% endif %}
+				
+				{% if viewrates == 1 %}
+				<div class="row" id="pfuncwifi" style="margin-bottom:10px;">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-primary button-rnd" data-toggle="modal" data-target="#popup">Wifi Rates</button>
+					</div>
+				</div>
+				{% endif %}
+				
+				
+				{% if viewchargingrates == 1 %}
+				<div class="row" id="pfunccrates" style="margin-bottom:10px;">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-primary button-rnd" data-toggle="modal" data-target="#chargingstation">Charging Rates</button>
+					</div>
+				</div>
+				{% endif %}
+				
+				
+				{% if buyload == 1 %}
+				<div class="row" id="peload" style="margin-bottom:10px;">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-danger button-rnd" data-target="#buyload" data-toggle="modal" data-backdrop="static" data-keyboard="false">Buy Load</button>
+					</div>
+				</div>
+				{% endif %}
+				
+				
+				{% if checkbalance == 1 %}
+				<div class="row" id="pcheckbalance" style="margin-bottom:10px;">
+					<div class="col-md-12">
+						<button type="button" class="btn btn-danger button-rnd" data-target="#checkbalance" data-toggle="modal" data-backdrop="static" data-keyboard="false">Check Balance</button>
+					</div>
+				</div>
+				{% endif %}
+
+
+				{% if chatbox == 1 %}
+				<div class="row" style="margin-bottom:10px;">
+					<div class="col-md-12"> 
+						<button type="button" class="btn btn-danger button-rnd" data-target="#chatbox" data-toggle="modal" data-backdrop="static" data-keyboard="false">ChatBox {{unreadmessages | raw}}</button>
+					</div>
+				</div>
+				{% endif %}
